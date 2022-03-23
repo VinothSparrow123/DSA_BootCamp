@@ -65,6 +65,16 @@ public class LinkedList {
 		size++;
 	}
 	
+	public Node insertUsingRecursion(int value, int index, Node currNode) {
+		if(index ==0) {
+			Node node = new Node(value, currNode);
+			size++;
+			return node;
+		}
+		currNode.next = insertUsingRecursion(value, index-1, currNode.next);
+		return currNode;
+	}
+	
 	public int deleteFirst() {
 		int value = head.value;
 		head = head.next;
@@ -108,6 +118,20 @@ public class LinkedList {
 		return deletedValue;
 	}
 	
+	public void removeDuplicates() {
+		Node temp=head;
+        while(temp.next != null){
+            if(temp.value == temp.next.value){
+                temp.next = temp.next.next;
+                size--;
+            }else{
+                temp = temp.next;
+            }
+        }
+        tail = temp;
+        tail.next = null;
+	}
+	
 	public Node find(int value) {
         Node node = head;
         while (node != null) {
@@ -127,6 +151,65 @@ public class LinkedList {
 		return temp;
 	}
 	
+	public LinkedList mergeSortedLists(LinkedList list1, LinkedList list2) {
+		Node f=list1.head;
+		Node s=list2.head;
+		
+		LinkedList ans = new LinkedList();
+
+        while(f != null && s !=null){
+            if(s.value > f.value){
+                ans.insertLast(f.value);
+                f=f.next;
+            }else{
+            	ans.insertLast(s.value);
+                s=s.next;
+            }
+        }
+        
+        while(f != null) {
+        	ans.insertLast(f.value);
+            f=f.next;
+        }
+        
+        while(s != null) {
+        	ans.insertLast(s.value);
+            s=s.next;
+        }
+        
+		return ans;
+	}
+	
+	public static LinkedList mergeSortedLists1(LinkedList list1, LinkedList list2) {
+		Node f=list1.head;
+		Node s=list2.head;
+		
+		LinkedList ans = new LinkedList();
+
+        while(f != null && s !=null){
+            if(s.value > f.value){
+                ans.insertLast(f.value);
+                f=f.next;
+            }else{
+            	ans.insertLast(s.value);
+                s=s.next;
+            }
+        }
+        
+        while(f != null) {
+        	ans.insertLast(f.value);
+            f=f.next;
+        }
+        
+        while(s != null) {
+        	ans.insertLast(s.value);
+            s=s.next;
+        }
+        
+		return ans;
+	}
+	
+	
 	private class Node{
 		private int value;
 		private Node next;
@@ -140,4 +223,6 @@ public class LinkedList {
 			this.next = next;
 		}
 	}
+	
+	
 }
