@@ -24,6 +24,8 @@ public class Pattern1 {
 	
 	public static void pattern2(int n) {
 		
+		String str= "";
+		
 		for (int row = 1; row <= n; row++) {
 			
 			//For every row run the column

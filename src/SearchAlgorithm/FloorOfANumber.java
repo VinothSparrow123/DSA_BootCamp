@@ -46,8 +46,6 @@ public class FloorOfANumber {
 			}
 		}
 		
-		
-		
 		return arr[end]; //when condition is violated s=e+1 i.e., e<s
 	}
 }
